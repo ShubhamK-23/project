@@ -11,7 +11,7 @@ import Signup from './Pages/Signup.jsx'
 import { AuthLayout } from './components/index.js'
 import Dashboard from './Pages/Dashboard.jsx'
 import TicketsPage from './Pages/TicketsPage.jsx'
-import { AddTicketPage } from './Pages/AddTicketPage.jsx'
+import  AddTicketPage  from './Pages/AddTicketPage.jsx'
 
 
 const router = createBrowserRouter([

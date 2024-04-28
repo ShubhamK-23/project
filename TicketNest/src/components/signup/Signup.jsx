@@ -91,18 +91,18 @@ function Signup() {
         </div>
         <div className="space-y-2"></div>
         <Button className="w-full" type="submit">
-          Login
+          Sign Up
         </Button>
         <Button className="w-full" variant="outline">
-          Login with Google
+          Sign up with Google
         </Button>
       </div>
       <div className="mt-4 text-center text-sm">
-        Don&apos;t have an account?
+        Already have an account? 
         <Link 
-          to="/signup"
-          className="underline" href="#">
-          Sign up
+          to="/login"
+          className="underline" >
+          Login
         </Link>
       </div>
     </div>

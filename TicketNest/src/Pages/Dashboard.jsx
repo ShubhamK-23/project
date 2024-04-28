@@ -10,117 +10,7 @@ import { DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, Dropdown
 
 function Dashboard() {
   return (
-    <div className="grid min-h-screen bg-gray-100/40 lg:grid-cols-[280px_1fr] ">
-    <div className="hidden border-r border-gray-200 bg-gray-100/40 lg:block">
-     <div className="flex h-full flex-col gap-2">
-       <div className="flex h-16 items-center border-b px-6">
-         <Link className="flex items-center gap-2 font-semibold" href="#">
-           <Package2Icon className="h-6 w-6" />
-           <span className="">TicketNest</span>
-         </Link>
-         <Button className="ml-auto h-8 w-8" size="icon" variant="outline">
-           <BellIcon className="h-4 w-4" />
-           <span className="sr-only">Toggle notifications</span>
-         </Button>
-       </div>
-       <div className="flex-1 overflow-auto py-2">
-         <nav className="grid items-start px-4 text-sm font-medium">
-           <Link
-             className="flex items-center gap-3 rounded-lg bg-gray-100 px-3 py-2 text-gray-900  transition-all hover:text-gray-900 "
-             href="#"
-           >
-             <HomeIcon className="h-4 w-4" />
-             Home
-           </Link>
-           <Link
-             className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 "
-             href="#"
-           >
-             <PackageIcon className="h-4 w-4" />
-             Tickets
-           </Link>
-           <Link
-             className="flex items-center gap-3 rounded-lg px-3 py-2  text-gray-500 transition-all hover:text-gray-900 "
-             href="#"
-           >
-             <UsersIcon className="h-4 w-4" />
-             Users
-           </Link>
-           <Link
-             className="flex items-center gap-3 rounded-lg px-3 py-2  text-gray-500 transition-all hover:text-gray-900 "
-             href="#"
-           >
-             <SettingsIcon className="h-4 w-4" />
-             Settings
-           </Link>
-         </nav>
-       </div>
-       <div className="mt-auto p-4">
-         <Card>
-           <CardHeader className="pb-4">
-             <CardTitle>Upgrade to Pro</CardTitle>
-             <CardDescription>Unlock all features and get unlimited access to our support team</CardDescription>
-           </CardHeader>
-           <CardContent>
-             <Button className="w-full" size="sm">
-               Upgrade
-             </Button>
-           </CardContent>
-         </Card>
-       </div>
-     </div>
-   </div>
-
-   <div className="flex flex-col">
-   <div className="flex flex-col min-h-screen">
-     <header className="flex h-14 items-center gap-4 border-b bg-gray-100/40 px-6 ">
-       <Link className="lg:hidden" href="#">
-         <Package2Icon className="h-6 w-6" />
-         <span className="sr-only">Home</span>
-       </Link>
-       <div className="w-full flex-1">
-         <form>
-           <div className="relative">
-             <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 " />
-             <Input
-               className="w-full bg-white shadow-none appearance-none pl-8 md:w-2/3 lg:w-1/3 "
-               placeholder="Search tickets..."
-               type="search"
-             />
-           </div>
-         </form>
-       </div>
-       <DropdownMenu>
-         <DropdownMenuTrigger asChild>
-           <Button
-             className="rounded-full border border-gray-200 w-8 h-8  "
-             size="icon"
-             variant="ghost"
-           >
-             <img
-               alt="Avatar"
-               className="rounded-full"
-               height="32"
-               src="/placeholder.svg"
-               style={{
-                 aspectRatio: "32/32",
-                 objectFit: "cover",
-               }}
-               width="32"
-             />
-             <span className="sr-only">Toggle user menu</span>
-           </Button>
-         </DropdownMenuTrigger>
-         <DropdownMenuContent align="end">
-           <DropdownMenuLabel>My Account</DropdownMenuLabel>
-           <DropdownMenuSeparator />
-           <DropdownMenuItem>Settings</DropdownMenuItem>
-           <DropdownMenuItem>Support</DropdownMenuItem>
-           <DropdownMenuSeparator />
-           <DropdownMenuItem>Logout</DropdownMenuItem>
-         </DropdownMenuContent>
-       </DropdownMenu>
-     </header>
+    <div className="container w-auto mx-auto mt--10 px-4 "style={{ marginTop: '-45.4rem', marginLeft: '17rem' }}>
      <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
        <div className="flex items-center gap-4">
          <h1 className="font-semibold text-lg md:text-2xl">Tickets</h1>
@@ -244,8 +134,7 @@ function Dashboard() {
          </Card>
        </div>
      </main>
-   </div>
- </div>
+
 </div>
   );
 }

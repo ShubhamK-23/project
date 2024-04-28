@@ -27,8 +27,9 @@ function Homepage() {
             </div>
             <div className="grid gap-2 min-[400px]:flex-row  flex-col">
               <Link
+                to="/login"
                 className="inline-flex h-10 items-center justify-center rounded-md border  border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900  dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:text-gray-50 dark:hover:text-white"
-                href="#"
+                
               >
                 Get Started
               </Link>

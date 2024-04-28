@@ -7,64 +7,18 @@ import {Package2Icon,SearchIcon, DownloadIcon, ChevronsRightIcon, ChevronsLeftIc
 import { Badge } from '../components/ui/Badge'
 import { Input } from "../components/ui/Input";
 import { Checkbox } from '../components/ui/Checkbox'
-import SideBar from '../components/sidebar/Sidebar'
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "../components/ui/Table";
 import { DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "../components/ui/Dropdown-menu";
+import { Sidebar } from '../components';
 
 
 export default function TicketsPage() {
     return (
-      <div className="grid min-h-screen items-start w-full gap-2 lg:grid-cols-[280px_1fr]">
-        <SideBar> </SideBar>
-        <div className="flex flex-col">
-          <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-gray-100/40 px-6">
-            <Link className="lg:hidden" href="#">
-              <Package2Icon className="h-6 w-6" />
-              <span className="sr-only text-gray-500">Home</span>
-            </Link>
-            <div className="w-full flex-1">
-              <form>
-                <div className="relative">
-                  <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 " />
-                  <Input
-                    className="w-full bg-white shadow-none appearance-none pl-8 md:w-2/3 lg:w-1/3"
-                    placeholder="Search"
-                    type="search"
-                  />
-                </div>
-              </form>
-            </div>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  className="rounded-full border border-gray-200 w-8 h-8 "
-                  size="icon"
-                  variant="ghost"
-                >
-                  <img
-                    alt="Avatar"
-                    className="rounded-full"
-                    height="32"
-                    src="/placeholder.svg"
-                    style={{
-                      aspectRatio: "32/32",
-                      objectFit: "cover",
-                    }}
-                    width="32"
-                  />
-                  <span className="sr-only">Toggle user menu</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Logout</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </header>
+      <>
+      <div className="container w-auto mx-auto mt--10 px-4 "style={{ marginTop: '-46.1rem', marginLeft: '15rem' }}>    
+      <div className="container mx-auto mt--10 px-4 ">
+        <div className="flex flex-col flex-grow">
+          
           <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-10">
             <div className="flex items-center gap-4">
               <h1 className="font-semibold text-lg md:text-xl">Tickets</h1>
@@ -79,7 +33,7 @@ export default function TicketsPage() {
             <Card>
               <CardContent className="p-0">
                 <div className="overflow-auto">
-                  <Table className="min-w-[800px]">
+                  <Table className="w-full">
                     <TableHeader>
                       <TableRow>
                         <TableHead className="w-10 shrink-0">
@@ -198,6 +152,9 @@ export default function TicketsPage() {
             </div>
           </main>
         </div>
-      </div>
+        </div>
+        </div>
+        </>  
+    
     )
   }
