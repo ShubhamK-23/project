@@ -22,7 +22,9 @@ export default function TicketsPage() {
           <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-10">
             <div className="flex items-center gap-4">
               <h1 className="font-semibold text-lg md:text-xl">Tickets</h1>
-              <Button size="sm">New ticket</Button>
+              <Link to="/addticket">
+                  <Button size="sm">New ticket</Button>
+              </Link>
               <div className="ml-auto flex items-center gap-2">
                 <Button size="xs" variant="outline">
                   <DownloadIcon className="mr-2 h-4 w-4" />
@@ -147,7 +149,9 @@ export default function TicketsPage() {
                 </Button>
               </div>
               <div className="ml-auto flex gap-4 md:gap-2">
-                <Button size="sm">New ticket</Button>
+              <Link to="/addticket">
+                  <Button size="sm">New ticket</Button>
+                </Link>
               </div>
             </div>
           </main>

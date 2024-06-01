@@ -18,7 +18,7 @@ function App() {
             //dispatching the action to store user data in redux state
             dispatch(login({userdata}))
           }else{
-            dispatch(logout)
+            dispatch(logout())
           }
     }).finally(()=>setoLoading(false))
   
@@ -28,10 +28,12 @@ return !loading ? (
 
   <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
     <div className='w-full block'>
-      <Header />
+      
         <main>
+        <Header className="fixed top-0 left-0 w-full bg-gray-900 text-white py-4"></Header>
          <Outlet />
         </main>
+        
     </div>
   </div> ) : null
 }

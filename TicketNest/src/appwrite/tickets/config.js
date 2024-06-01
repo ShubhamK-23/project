@@ -20,7 +20,8 @@ export class Services {
                 conf.appwriteDatabaseId,
                 conf.appwriteTicketsCollectionId,
                 ticketId,
-                {                   
+                {   
+                    ticketId,                
                     title,
                     description, 
                     status,
@@ -50,7 +51,8 @@ export class Services {
                 conf.appwriteDatabaseId,
                 conf.appwriteTicketsCollectionId,
                 ticketId,
-                {                   
+                {   
+                    ticketId,                
                     title,
                     description, 
                     status,
@@ -141,17 +143,21 @@ export class Services {
 
      // file upload service
 
-    async uploadFile(file) {
+     async uploadFile(file) {
         try {
+            if (!(file instanceof File)) {
+                throw new Error("Parameter 'file' has to be a File.");
+            }
+
             return await this.storage.createFile(
                 conf.appwriteBucketId,
-                ID.unique,
+                ID.unique(),
                 file
-            )
+            );
         } catch (error) {
-            console.log("Error uploading file :: uploadFile() :: config.js ",error)
+            console.log("Error uploading file :: uploadFile() :: config.js ", error);
         }
-     }
+    }
 
     async deleteFile(fileID) {
         try {
