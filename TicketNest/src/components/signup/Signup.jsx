@@ -21,7 +21,7 @@ function Signup() {
     try {
       const userData = await authService.createAccount(data)
       if(userData) dispatch(login(userData))
-      navigate("/")
+      navigate("/dashboard")
     } catch (error) 
     {
       console.log("Error in Signup component:: ERROR",error);

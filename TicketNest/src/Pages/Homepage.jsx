@@ -9,7 +9,7 @@ import { Label } from "../components/ui/Label"
 function Homepage() {
   return (
     <>
-     <div className="container min-h-screen mx-auto mt--10 px-4 "style={{ marginTop: '-43.5rem' }}>
+     <div className="container min-h-screen mx-auto mt--10 px-4 ">
 
      <header className="py-12 md:py-16">
         <div className="container flex flex-col items-center justify-center px-4 md:px-6 space-y-4 text-center md:flex-row md:space-y-0">
