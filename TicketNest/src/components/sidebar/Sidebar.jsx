@@ -7,7 +7,7 @@ import { Package2Icon,BellIcon, HomeIcon, PackageIcon, UsersIcon, LineChartIcon 
 function Sidebar() {
   return (
     <>
-        <div className="hidden border-r bg-gray-100/40 lg:block">
+        <aside className="fixed top-14 left-0 w-64 h-full border-r bg-gray-100/40 z-40">
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-[60px] items-center border-b px-6">
             <Link className="flex items-center gap-2 font-semibold" href="#">
@@ -28,14 +28,16 @@ function Sidebar() {
                 <PackageIcon className="h-4 w-4" />
                 Tickets
               </Link>
-              <Link
+              <Link 
+                to="/dashboard"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900"
                 href="#"
               >
                 <UsersIcon className="h-4 w-4" />
-                Customers
+                Dashboard
               </Link>
-              <Link
+              <Link 
+                to = "/#"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900"
                 href="#"
               >
@@ -45,7 +47,7 @@ function Sidebar() {
             </nav>
           </div>
         </div>
-      </div> 
+      </aside> 
     </>
   )
 }

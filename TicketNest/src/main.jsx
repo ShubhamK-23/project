@@ -12,6 +12,7 @@ import { AuthLayout } from './components/index.js'
 import Dashboard from './Pages/Dashboard.jsx'
 import TicketsPage from './Pages/TicketsPage.jsx'
 import  AddTicketPage  from './Pages/AddTicketPage.jsx'
+import  Ticket  from './Pages/Ticket.jsx'
 
 
 const router = createBrowserRouter([
@@ -71,6 +72,20 @@ const router = createBrowserRouter([
               <AddTicketPage/>
             </AuthLayout>
           )
+      },
+      {
+        path:"/ticket",
+        element:
+          (
+            <AuthLayout authentication>
+              {" "}
+              <Ticket/>
+            </AuthLayout>
+          )
+      },
+      {
+        path:"/ticket/:ticketId",
+        element: <Ticket/>,
       },
 
 

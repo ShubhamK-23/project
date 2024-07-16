@@ -8,10 +8,9 @@ import authService from '../../appwrite/auth/auth'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../features/auth/authSlice'
-
 import { DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuContent, DropdownMenu } from "../ui/Dropdown-menu";
 import { Button } from "../ui/Button";
-import  Sidebar  from '../sidebar/Sidebar';
+
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
@@ -60,14 +59,10 @@ function Header() {
 
   return !authStatus ? (
     <>
-      <div className="bg-gray-50/90 border-t border-b border-gray-200 ">
+    <header className="fixed top-0 left-0 w-full flex h-14 items-center gap-4 border-b border-gray-200 bg-gray-50/90 px-6 z-50">
         <div className="container px-4 md:px-6">
           <nav className="flex items-center justify-between h-[60px]">
-            <div className="flex items-center space-x-4">
-              <Link className="flex items-center space-x-2" to="/">
-                <Package2Icon className="h-6 w-6" />
-                <span className="font-semibold">TicketNest</span>
-              </Link>
+            <div className="flex items-center space-x-4"> 
               {authStatus && (
                 <div className="hidden md:flex items-center space-x-4">
                   {navItems.map((item) => 
@@ -99,13 +94,12 @@ function Header() {
             </div>
           </nav>
         </div>
-      </div>
+      </header>
     </>
   ) : (
     <>
-      <div className="grid min-h-screen bg-gray-100/40 lg:grid-cols-[280px_1fr] ">
-      <Sidebar/>
-        <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-gray-100/40 px-6">
+      <header className="fixed top-0 left-0 w-full flex h-14 items-center gap-4 border-b border-gray-200 bg-gray-50/90 px-6 z-50">
+        
           <Link className="lg:hidden" to="/">
             <Package2Icon className="h-6 w-6" />
             <span className="sr-only text-gray-500">Home</span>
@@ -120,7 +114,9 @@ function Header() {
                   placeholder="Search"
                   type="search"
                 />
+                
               </div>
+              
             </form>
           </div>
           <DropdownMenu>
@@ -154,8 +150,8 @@ function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
         </header>
-      </div>
-    </>
+      
+  </>
   );
 }
 

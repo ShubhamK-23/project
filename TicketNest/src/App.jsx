@@ -3,39 +3,38 @@ import { useDispatch } from 'react-redux'
 import authService from './appwrite/auth/auth'
 import { login, logout } from './features/auth/authSlice'
 import Header from './components/header/Header'
+import Sidebar from './components/sidebar/Sidebar'
 import { Outlet } from 'react-router-dom'
 
 function App() {
-  const [loading, setoLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
 
   useEffect(() => {
-      authService.getCurrentUser()
-        .then((userdata) => {
-          if(userdata)
-          {
-            console.log(userdata)
-            //dispatching the action to store user data in redux state
-            dispatch(login({userdata}))
-          }else{
-            dispatch(logout())
-          }
-    }).finally(()=>setoLoading(false))
-  
-},[])
+    authService.getCurrentUser()
+      .then((userdata) => {
+        if(userdata) {
+          dispatch(login({userdata}))
+        } else {
+          dispatch(logout())
+        }
+      })
+      .finally(() => setLoading(false))
+  }, [])
 
-return !loading ? ( 
+  if (loading) return null;
 
-  <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
-    <div className='w-full block'>
-      
-        <main>
-        <Header className="fixed top-0 left-0 w-full bg-gray-900 text-white py-4"></Header>
-         <Outlet />
+  return (
+    <div className="min-h-screen bg-gray-400">
+      <Header className="bg-gray-900 text-white py-4" />
+      <div className="flex">
+        <Sidebar />
+        <main className="flex-1 p-6 overflow-auto">
+          <Outlet />
         </main>
-        
+      </div>
     </div>
-  </div> ) : null
+  )
 }
 
 export default App

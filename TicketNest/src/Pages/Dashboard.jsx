@@ -8,7 +8,7 @@ import { DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator, Dropdown
 
 function Dashboard() {
   return (
-    <div className="container w-auto mx-auto mt--10 px-4 "style={{ marginTop: '-45.4rem', marginLeft: '17rem' }}>
+    <div className="flex-1 space-y-4 pt-14 pl-64">
      <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
        <div className="flex items-center gap-4">
          <h1 className="font-semibold text-lg md:text-2xl">Tickets</h1>

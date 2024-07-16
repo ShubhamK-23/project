@@ -1,3 +1,4 @@
+/* eslint-disable no-unreachable */
 import { Client, ID, Databases, Storage,Query } from "appwrite";
 import conf from '../../conf';
 
@@ -103,28 +104,17 @@ export class Services {
     }
 
     async getAllTickets(queries = [
-        Query.select(
-            [
-                "ticketid", 
-                "tilte", 
-                "status", 
-                "priority", 
-                "customerName", 
-                "createdAt", 
-                "responsiblePerson", 
-                "owner"
-            ]
-        ),
         Query.limit(25)
-        ]){
+    ]){
         try {
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
                 conf.appwriteTicketsCollectionId,
                 queries
-            )
+            );
+            
         } catch (error) {
-            console.log("Error fetching tickets :: getTicket() :: config.js ",error)
+            console.log("Error fetching tickets :: getAllTicket() :: config.js ", error);
         }
     }
 
