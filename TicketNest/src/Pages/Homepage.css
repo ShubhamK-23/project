@@ -1,0 +1,88 @@
+/* Homepage.css */
+.homepage-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: calc(100vh - 4rem - 2rem);
+  padding-top: 2rem;
+}
+
+.homepage-content {
+  max-width: 100%;
+  padding: 1rem;
+}
+
+.homepage-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.homepage-image {
+  width: 80%;
+  max-width: 300px;
+  margin: 0 auto 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .homepage-content {
+    padding: 1.5rem;
+  }
+
+  .homepage-title {
+    font-size: 2.5rem;
+  }
+
+  .homepage-image {
+    width: 70%;
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 768px) {
+  .homepage-section {
+    padding-top: 3rem;
+  }
+
+  .homepage-content {
+    max-width: 700px;
+  }
+
+  .homepage-title {
+    font-size: 3rem;
+  }
+
+  .homepage-image {
+    width: 60%;
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .homepage-section {
+    padding-top: 4rem;
+  }
+
+  .homepage-content {
+    max-width: 900px;
+  }
+
+  .homepage-title {
+    font-size: 3.5rem;
+  }
+
+  .homepage-image {
+    width: 50%;
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .homepage-content {
+    max-width: 1100px;
+  }
+
+  .homepage-title {
+    font-size: 4rem;
+  }
+}
