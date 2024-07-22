@@ -103,17 +103,17 @@ export default function Ticket() {
                 <div className="p-4 border rounded-md">
                     <h2 className="text-lg font-bold">Ticket Information</h2>
                     <ul className="mt-2 space-y-2 text-sm">
-                        <li><strong>State:</strong> Open</li>
-                        <li><strong>Priority:</strong> High</li>
-                        <li><strong>Owner:</strong> John Doe</li>
-                        <li><strong>Responsible:</strong> Jane Smith</li>
+                        <li><strong>State:</strong> {ticket.status}</li>
+                        <li><strong>Priority:</strong> {ticket.priority}</li>
+                        <li><strong>Owner:</strong> {ticket.owner}</li>
+                        <li><strong>Responsible:</strong> {ticket.responsiblePerson}</li>
                         <li><strong>Created At:</strong> {formatDate(ticket.createdAt)}</li>
                     </ul>
                 </div>
                 <div className="p-4 border rounded-md">
                     <h2 className="text-lg font-bold">Customer Information</h2>
                     <ul className="mt-2 space-y-2 text-sm">
-                        <li><strong>Customer Name:</strong> Acme Corp</li>
+                        <li><strong>Customer Name:</strong> {ticket?.customerName || "NA"} </li>
                     </ul>
                 </div>
             </aside>

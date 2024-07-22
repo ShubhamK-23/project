@@ -30,12 +30,12 @@ export class Services {
                     customerName,
                     responsiblePerson,
                     createdAt,
-                    updatedAt,
-                    workDone,
+                    updatedAt: [updatedAt],
+                    workDone: [workDone],
                     owner,
                     deadline,
                     notes,
-                    attachments,
+                    attachments: attachments || "",
                     tags
                 }
                             )
@@ -61,12 +61,12 @@ export class Services {
                     customerName,
                     responsiblePerson,
                     createdAt,
-                    updatedAt,
-                    workDone,
+                    updatedAt: [updatedAt],
+                    workDone: [workDone],
                     owner,
                     deadline,
                     notes,
-                    attachments,
+                    attachments: attachments || "",
                     tags
                 }
 

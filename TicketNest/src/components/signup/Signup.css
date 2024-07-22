@@ -1,0 +1,160 @@
+.signup-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    padding: 1rem; /* Increased padding */
+    box-sizing: border-box; /* Ensure padding is included in the height */
+}
+  
+.signup-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: calc(90vh - 4rem); /* Subtract the container padding */
+    
+}
+  
+.signup-image-container,
+.signup-form-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    min-height: 100%; /* Ensure full height */
+}
+  
+  .signup-image {
+    max-width: 80%;
+    height: auto;
+    object-fit: contain;
+  }
+  
+
+  .signup-form {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%; /* Take full height of parent */
+}
+  
+  .signup-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .signup-subtitle {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .password-label-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .forgot-password {
+    color: #3b82f6;
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+  
+  .forgot-password:hover {
+    text-decoration: underline;
+  }
+  
+  .signup-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+  }
+  
+  .signup-button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #111827;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .google-signup-button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: white;
+    color: #111827;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .login-prompt {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .login-link {
+    color: #3b82f6;
+    text-decoration: none;
+    margin-left: 0.25rem;
+  }
+  
+  .login-link:hover {
+    text-decoration: underline;
+  }
+  
+  .error-message {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  @media (max-width: 1024px) {
+    .signup-content {
+        flex-direction: column;
+        min-height: auto; /* Allow content to determine height on smaller screens */
+    }
+
+    .signup-image-container,
+    .signup-form-container {
+        width: 100%;
+        min-height: auto; /* Allow content to determine height */
+    }
+}
+  
+    
+  @media (max-width: 640px) {
+    .signup-container {
+      padding: 0.5rem;
+    }
+  
+    .signup-content {
+      border-radius: 0.5rem;
+    }
+  
+    .signup-image-container,
+    .signup-form-container {
+      padding: 1rem;
+    }
+  }

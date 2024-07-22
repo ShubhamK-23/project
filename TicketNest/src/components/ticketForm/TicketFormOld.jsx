@@ -5,8 +5,13 @@ import { useForm } from 'react-hook-form';
 import { Button, Input, } from '../index';
 import service from '../../appwrite/tickets/config';
 import { useNavigate } from 'react-router-dom';
-import Select from '../ui/Select';
+//import Select from '../ui/Select';
 import { Label } from "../ui/Label";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent,CardFooter} from '../ui/Card';
+import { Textarea } from '../ui/Textarea';
+import Select from "../ui/Select"
+
+
 
 function TicketFormOld({ ticket }) {
     const navigate = useNavigate();
@@ -16,7 +21,7 @@ function TicketFormOld({ ticket }) {
         if (ticket && ticket.createdAt) {
             setCreatedAt(new Date(ticket.createdAt * 1000).toISOString().substr(0, 10));
         } else {
-            setCreatedAt(new Date().toISOString().substr(0, 10)); // Set current date as default
+            setCreatedAt(new Date().toISOString().substr(0, 10));
         }
     }, [ticket]);
 
@@ -26,7 +31,7 @@ function TicketFormOld({ ticket }) {
             title: ticket?.title || "",
             description: ticket?.description || "",
             status: ticket?.status || "Open",
-            priority: ticket?.priority || "2 Normal",
+            priority: ticket?.priority || "Low",
             customerName: ticket?.customerName || "",
             responsiblePerson: ticket?.responsiblePerson || "",
             owner: ticket?.owner || "",
@@ -55,10 +60,11 @@ function TicketFormOld({ ticket }) {
                     ...data,
                     ticketId: data.ticketId,
                     attachments: file ? file.$id : ticket.attachments,
+                    updatedAt: new Date().toISOString()
                 });
 
                 if (dbTicket) {
-                    navigate(`/tickets/${dbTicket.ticketId}`);
+                    navigate(`/ticket/${dbTicket.ticketId}`);
                 }
             } else {
                 if (file) {
@@ -67,11 +73,12 @@ function TicketFormOld({ ticket }) {
 
                 const dbTicket = await service.createTicket({
                     ...data,
-                    ticketId: data.ticketId
+                    ticketId: data.ticketId,
+                    updatedAt: new Date().toISOString()
                 });
 
                 if (dbTicket) {
-                    navigate(`/tickets/${dbTicket.ticketId}`);
+                    navigate(`/ticket/${dbTicket.ticketId}`);
                 }
             }
         } catch (error) {
@@ -80,169 +87,166 @@ function TicketFormOld({ ticket }) {
     };
 
     return (
-        <div className="flex flex-col min-h-screen gap-1 max-w-4xl mx-auto px-4 ">
-            <div>
-                <h1 className="text-3xl font-bold">Add New Ticket</h1>
-                <p className="text-gray-500 dark:text-gray-400">Fill out the form to create a new ticket.</p>
+        (<Card className="w-full max-w-4xl">
+        <form onSubmit={handleSubmit(submit)}>
+          <CardHeader>
+            <CardTitle>Add New Ticket</CardTitle>
+            <CardDescription>Fill out the form to create a new ticket in TicketNest.</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-6">
+          <div className="space-y-2">
+              <Label htmlFor="tags">Title</Label>
+              <Input
+                    type="Text" 
+                    id="title" 
+                    placeholder="Enter ticket title"
+                    className="mb-4"
+                    {...register("title", { required: true })} 
+                />
             </div>
-            <form onSubmit={handleSubmit(submit)} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                    <div>
-                        <Input
-                            type="Text"
-                            label="Title :"
-                            placeholder="Title"
-                            className="mb-4"
-                            {...register("title", { required: true })}
-                        />
-                    </div>
-                    <div>
-                        <Input
-                            type="Text"
-                            label="Ticket Number :"
-                            placeholder="Ticket Number"
-                            className="mb-4"
-                            {...register("ticketId", { required: true })}   
-                        />
-                    </div>
-                    <div>
-                        <Input
-                            label="Customer Name :"
-                            type="Text"
-                            placeholder="CustomerName"
-                            className="mb-4"
-                            {...register("customerName", { required: true })}
-                        />
-                    </div>
-                    <div>
-                        <Input
-                            type="Text"
-                            label="Description :"
-                            placeholder="Issue Details"
-                            className="mb-4"
-                            {...register("description", { required: true })}
-                        />
-                    </div>
-                    <div>
-                        <Label>Status</Label>
-                        <Select
-                            options={["Open", "Closed Successfully", "Closed Unsuccessfully", "Pending reminder", "PAC+", "Wait For Customer Response", "Wait For Internal Response", "Wait For Update Install" , "Wait For Update Release"]}
-                            label="Status"
-                            className="mb-4"
-                            {...register("status", { required: true })}
-                        />
-                    </div>
-                </div>
-                <div className="space-y-4">
-                    <div>
-                        <Label>Priority</Label>
-                        <Select
-                            options={["Low","Medium","High"]}
-                            label="Priority"
-                            className="mb-4"
-                            {...register("priority", { required: true })}
-                        />
-                    </div>
-                    <div>
-                        <Label>Owner</Label>
-                        <Select
-                            options={["Person 1","Person 2","Person 3"]}
-                            label="Owner:"
-                            placeholder="Owner of the ticket"
-                            className="mb-4"
-                            {...register("owner", { required: true })}
-                        />
-                    </div>
-                    <div>
-                        <Label>Responsible</Label>
-                        <Select
-                            options={["Person 1","Person 2","Person 3"]}
-                            label="Responsible:"
-                            placeholder="Responsible Person"
-                            className="mb-4"
-                            {...register("responsiblePerson", { required: true })} 
-                        />
-                    </div>
-                    <div>
-                        <Label>Created at</Label>
-                        <Input
-                            type="date"
-                            label="Created At"
-                            className="mb-4"
-                            {...register("createdAt", { required: true })} 
-                        />
-                    </div>
-                    <div>
-                        <Label>Updated at</Label>
-                        <Input
-                            type="date"
-                            label="Updated At"
-                            className="mb-4"
-                            {...register("updatedAt")}
-                        />
-                    </div>
-                    <div>
-                        <Label>Deadline</Label>
-                        <Input
-                            type="date"
-                            label="Deadline"
-                            className="mb-4"
-                            {...register("deadline")} 
-                        />
-                    </div>
-                    <div>
-                        <Input
-                            type="Text"
-                            label="Work Done:"
-                            placeholder="Work Done on the ticket"
-                            className="mb-4"
-                            {...register("workDone")}
-                        />
-                    </div>
-                    <div>
-                        <Input
-                            type="Text"
-                            label="Notes:"
-                            placeholder="Notes about the ticket"
-                            className="mb-4"
-                            {...register("notes")}
-                        />
-                    </div>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="title">Customer</Label>
+                <Input
+                    label="Customer Name :"
+                    type="Text"
+                    placeholder="CustomerName"
+                    className="mb-4"
+                    {...register("customerName", { required: true })} 
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="number">Ticket Number</Label>
+                <Input 
+                    type="Text"
+                    label="Ticket Number :"
+                    placeholder="Ticket Number"
+                    className="mb-4"
+                    {...register("ticketId", { required: true })} 
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="description">Description</Label>
+              <Textarea
+                    type="Text"
+                    label="Description :"
+                    placeholder="Issue Details"
+                    className="min-h-[150px]"
+                    {...register("description", { required: true })}
+                />
+            </div>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="status">Status</Label>
+                <Select
+                    options={["Open", "Closed Successfully", "Closed Unsuccessfully", "Pending reminder", "PAC+", "Wait For Customer Response", "Wait For Internal Response", "Wait For Update Install" , "Wait For Update Release"]}
+                    label="Status"
+                    className="mb-4"
+                    {...register("status", { required: true })}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="priority">Priority</Label>
+                <Select
+                    options={["Low","Medium","High"]}
+                    label="Priority"
+                    className="mb-4"
+                    {...register("priority", { required: true })}
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="owner">Owner</Label>
+                <Select
+                    options={["Person 1","Person 2","Person 3"]}
+                    label="Owner:"
+                    placeholder="Owner of the ticket"
+                    className="mb-4"
+                    {...register("owner", { required: true })}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="responsible">Responsible</Label>
+                <Select
+                    options={["Person 1","Person 2","Person 3"]}
+                    label="Responsible:"
+                    placeholder="Responsible Person"
+                    className="mb-4"
+                    {...register("responsiblePerson", { required: true })} 
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="created-at">Created At</Label>
+                <Input
+                    type="date"
+                    label="Created At"
+                    className="mb-4"
+                    {...register("createdAt", { required: true })} 
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="updated-at">Updated At</Label>
+                <Input
+                    type="date"
+                    label="Updated At"
+                    className="mb-4"
+                    {...register("updatedAt")}
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="work-done">Work Done</Label>
+              <Textarea 
+                    id="work-done" 
+                    placeholder="Describe the work done" 
+                    className="mb-4"
+                    {...register("workDone")} 
+                />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="attachments">Attachments</Label>
+              <Input 
+                id="attachments" 
+                type="file" multiple
+                className="mb-4"
+                accept="image/png, image/jpg, image/jpeg, image/gif, File/rar , File/pdf, File/txt"
+                {...register("attachment")}
+            />
 
-                    <Input
-                        type="Text"
-                        label="Tags:"
-                        placeholder="Tags related to ticket"
-                        className="mb-4"
-                        {...register("tags")}                    
+            {ticket && (
+                <div className="w-full mb-4">
+                    <img
+                        src={service.getPreviewFile(ticket.attachments)}
+                        alt={ticket.title}
+                        className="rounded-lg"
                     />
-
-                    <div className="w-1/3 px-2">
-                        <Input
-                            label="Attachments :"
-                            type="file"
-                            className="mb-4"
-                            accept="image/png, image/jpg, image/jpeg, image/gif, File/rar , File/pdf, File/txt"
-                            {...register("attachment")}
-                        />
-
-                        {ticket && (
-                            <div className="w-full mb-4">
-                                <img
-                                    src={service.getPreviewFile(ticket.attachments)}
-                                    alt={ticket.title}
-                                    className="rounded-lg"
-                                />
-                            </div>
-                        )}
-
-                        <Button type="submit" className="w-full">
-                            {ticket ? "Update" : "Submit"}
-                        </Button>
-                    </div>
                 </div>
-            </form>
-        </div>
+            )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="tags">Tags</Label>
+              <Input
+                type="Text" 
+                id="tags" 
+                placeholder="Enter tags separated by commas"
+                className="mb-4"
+                {...register("tags")} 
+                />
+            </div>
+          </CardContent>
+          <CardFooter className="flex justify-end gap-2">
+            <Button variant="outline">Cancel</Button>
+            <Button type="submit" >
+                    {ticket ? "Update Ticket" : "Create Ticket"}
+            </Button>
+            
+          </CardFooter>
+         </form>
+        </Card>)
     );
 }
 

@@ -4,6 +4,7 @@ import { Button } from "../components/ui/Button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../components/ui/Card";
 import { TicketIcon, TagIcon, ClockIcon, UsersIcon, WebcamIcon, CheckIcon, BarChartIcon, PieChartIcon, DownloadIcon } from "../components/ui/Icons.jsx";
 import './Homepage.css';
+import {Link} from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
 function Homepage() {
@@ -16,23 +17,27 @@ function Homepage() {
         <Card className="homepage-section flex flex-col justify-start items-center p-4 md:p-6 lg:p-8">
           <div className="homepage-content max-w-3xl w-full text-center">
             <h1 className="homepage-title text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Welcome to TicketNest</h1>
-            <img src="/Images/Ticket1.svg" alt="Ticket Background" className="homepage-image w-3/4 md:w-2/3 lg:w-1/2 mx-auto mb-6 object-cover" />
+            <img src="/Images/Ticket1.svg" alt="Ticket Background" className="homepage-image w-1/4 md:w-2/3 lg:w-1/2 mx-auto mb-6 object-cover" />
             <p className="text-base md:text-lg lg:text-xl mb-8">
               Streamline your customer service with our powerful ticket management and collaboration tools.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-4">
-              <Button
-                variant="outline"
-                size="lg"
-                className="text-primary-foreground hover:bg-primary-foreground/20 w-full sm:w-auto">
-                Get Started
-              </Button>
+            <Link to= "/tickets">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="text-primary-foreground hover:bg-primary-foreground/20 w-full sm:w-auto">
+                  Tickets
+                </Button>
+              </Link>
+              <Link to= "/dashboard">
               <Button
                 variant="solid"
                 size="lg"
                 className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 w-full sm:w-auto">
-                Schedule a Demo
+                Dashboard
               </Button>
+              </Link>
             </div>
           </div>
         </Card>
@@ -125,17 +130,19 @@ function Homepage() {
             Streamline your customer service with our powerful ticket management and collaboration tools.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-4">
-            <Button
-              variant="outline"
-              size="lg"
-              className="text-primary-foreground hover:bg-primary-foreground/20 w-full sm:w-auto">
-              Get Started
-            </Button>
+          <Link to= "/login">
+              <Button
+                variant="outline"
+                size="lg"
+                className="text-primary-foreground hover:bg-primary-foreground/20 w-full sm:w-auto">
+                Get Started
+              </Button>
+            </Link>
             <Button
               variant="solid"
               size="lg"
               className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 w-full sm:w-auto">
-              Schedule a Demo
+              Sign Up
             </Button>
           </div>
         </div>

@@ -130,7 +130,7 @@ function Header() {
                   alt="Avatar"
                   className="rounded-full"
                   height="32"
-                  src="/placeholder.svg"
+                  src="/Images/male_avatar.svg"
                   style={{
                     aspectRatio: "32/32",
                     objectFit: "cover",
