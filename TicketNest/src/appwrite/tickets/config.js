@@ -69,11 +69,11 @@ export class Services {
 
     async getTicket(ticketId){
         try {
-           return await this.databases.getDocument(
-            conf.appwriteDatabaseId,
-            conf.appwriteTicketsCollectionId,
-            ticketId
-           ) 
+            return await this.databases.getDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteTicketsCollectionId,
+                ticketId
+        ) 
         } catch (error) {
             console.log('Error getting Ticket:: getTicket() :: config.js ', error);
             return false
@@ -108,9 +108,28 @@ export class Services {
         }
     }
 
+    async getTicketsByStatus(status= ["open"]) {
+        try {
+            if (!Array.isArray(status)){
+                status=[status];
+            }
+
+            const queries = [Query.equal("status", status)];
+
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteTicketsCollectionId,
+                queries
+            );
+        } catch (error) {
+            console.log("Error fetching open ticekts :: getTicketByStatus() :: congig.js", error);
+            return false;
+        }
+    }
+
      // file upload service
 
-     async uploadFile(file) {
+    async uploadFile(file) {
         try {
             if (!(file instanceof File)) {
                 throw new Error("Parameter 'file' has to be a File.");

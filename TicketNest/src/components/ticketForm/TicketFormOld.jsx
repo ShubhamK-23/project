@@ -27,7 +27,8 @@ function TicketFormOld({ ticket }) {
 
             if (ticket.attachments) {
                 service.getPreviewFile(ticket.attachments).then(url => {
-                setPreviewUrl(url);  // Set the preview URL
+                setPreviewUrl(url);
+                console.log(url);
                 })
                 .catch(error => {
                     console.error("Error fetching preview URL:", error);
@@ -66,13 +67,13 @@ function TicketFormOld({ ticket }) {
     }, [createdAt, updatedAt, setValue]);
 
     const submit = async (data) => {
-        setErrorMessage(''); // Clear any existing error messages
+        setErrorMessage(''); 
         const createdAtDate = new Date(data.createdAt);
         const updatedAtDate = new Date(data.updatedAt);
 
         if (updatedAtDate < createdAtDate) {
             setErrorMessage('Updation date cannot be earlier than ticket creation date.');
-            return; // Prevent form submission
+            return; 
         }
 
         try {

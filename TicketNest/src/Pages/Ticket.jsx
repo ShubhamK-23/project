@@ -32,7 +32,7 @@ function formatDate(dateString) {
 }
 
 export default function Ticket() {
-  const [ticket, setTicket] = useState(null); // Initialize as null
+  const [ticket, setTicket] = useState(null); 
   const { ticketId } = useParams();
   const { isLoading, setIsLoading } = useLoading();
   const [previewUrl, setPreviewUrl] = useState('');
@@ -60,7 +60,7 @@ export default function Ticket() {
 
           if (ticket.attachments) {
             service.getPreviewFile(ticket.attachments).then(url => {
-            setPreviewUrl(url);  // Set the preview URL
+            setPreviewUrl(url);
             })
             .catch(error => {
                 console.error("Error fetching preview URL:", error);
@@ -80,7 +80,7 @@ export default function Ticket() {
     }
 
     return () => {
-      isMounted = false; // Cleanup function to set the flag to false
+      isMounted = false; 
     };
   }, [ticketId, navigate, setIsLoading]);
 

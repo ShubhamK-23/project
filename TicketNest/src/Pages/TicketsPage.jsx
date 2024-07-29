@@ -9,30 +9,67 @@ import {TableHead,TableRow,TableHeader,Table,TableBody,} from "../components/ui/
 import { CardContent, Card } from "../components/ui/Card";
 import { useFetchInterceptor } from "../Interceptor/Interceptor";
 import {useLoading}  from "../Context/LoadingContext";
+import { Query } from "appwrite";
 
 export default function TicketsPage() {
   const [tickets, setTickets] = useState([]);
-  const {isLoading, setIsLoading} = useLoading()
+  const {isLoading, setIsLoading} = useLoading();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalTickets, setTotalTickets] = useState(0);
+  const [cursor, setCursor] = useState(null)
+  const [prevCursors, setPrevCursors] = useState([])
+  const ticketsPerPage = 7;
 
   useFetchInterceptor();
 
-  useEffect(() => {
+  const fetchTickets = (page,  cursor) => {
     setIsLoading(true);
+    let query = [Query.limit(ticketsPerPage)];
+    if(cursor){
+      query.push(Query.cursorAfter(cursor));
+    }
     service
-      .getAllTickets()
-      .then((response) => {
-        if (response && response.documents) {
-          setTickets(response.documents);
-          console.log(response);
+    .getOpenTickets()
+    .then((response)=> {
+      if(response && response.documents) {
+        setTickets(response.documents);
+        setTotalTickets(response.total)
+        if(response.documents.length > 0){
+          setCursor(response.documents[response.documents.length - 1].$id);
         }
-      })
-      .catch((error) => {
-        console.log("Error fetching tickets:", error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+        console.log(response)
+      }
+
+    })
+    .catch((error) => {
+      console.log("Error Fetching Documents", error);
+    })
+    .finally(() => {
+      setIsLoading(false)
+    })
+  }
+
+  useEffect(() => {
+    fetchTickets(currentPage, null)
   }, [setIsLoading]);
+
+  const handleNextPage = () => {
+    if(currentPage * ticketsPerPage < totalTickets) {
+      setPrevCursors((prev) => [...prev, cursor]);
+      setCurrentPage(currentPage + 1);
+      fetchTickets(currentPage + 1, cursor);
+    }
+  }
+
+  const handlePreviousPage = () => {
+    if(currentPage > 1) {
+      const newPrevCursors = prevCursors.slice(0, -1);
+      const newCursor = newPrevCursors[newPrevCursors.length - 1] || null;
+      setPrevCursors(newPrevCursors);
+      setCurrentPage(currentPage - 1);
+      fetchTickets(currentPage - 1, newCursor);
+    }
+  };
 
   console.log(isLoading);
 
@@ -43,7 +80,7 @@ export default function TicketsPage() {
           <header>Loading...</header>
         </div>
       ) : (
-      <div className="flex-1 space-y-4 pt-14 pl-64">
+      <div className="flex-1 space-y-4 pt-11 pl-64">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold">Tickets</h1>
           <div className="flex items-center gap-2">
@@ -62,12 +99,12 @@ export default function TicketsPage() {
               <TableHeader>
                 <TableRow>
                   <TableHead className="w-10 shrink-0"></TableHead>
-                  <TableHead className="font-normal">Ticket</TableHead>
-                  <TableHead className="font-normal">Customer</TableHead>
-                  <TableHead className="font-normal">Title</TableHead>
-                  <TableHead className="font-normal">Status</TableHead>
-                  <TableHead className="font-normal">Priority</TableHead>
-                  <TableHead className="font-normal">Agent</TableHead>
+                  <TableHead className="font-bold">Ticket</TableHead>
+                  <TableHead className="font-bold">Customer</TableHead>
+                  <TableHead className="font-bold">Title</TableHead>
+                  <TableHead className="font-bold">Status</TableHead>
+                  <TableHead className="font-bold">Priority</TableHead>
+                  <TableHead className="font-bold">Responsible</TableHead>
                   <TableHead className="justify-end font-normal">
                     Last update
                   </TableHead>
@@ -83,12 +120,27 @@ export default function TicketsPage() {
         </Card>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center md:items-start md:gap-8">
           <div className="flex items-center gap-2 text-xs md:gap-4">
-            <Button className="h-6 w-6" size="icon" variant="outline">
+            <Button className="h-6 w-6" 
+              size="icon" 
+              variant="outline"
+              onClick={handlePreviousPage}
+              disabled={currentPage === 1}
+            >
               <ChevronsLeftIcon className="h-4 w-4" />
               <span className="sr-only">Previous page</span>
             </Button>
-            <span className="font-medium">1-5 of 20</span>
-            <Button className="h-6 w-6" size="icon" variant="outline">
+            <span className="font-medium">
+              {`${(currentPage - 1) * ticketsPerPage + 1}-${Math.min(
+                          currentPage * ticketsPerPage,
+                          totalTickets
+                      )} of 
+                    ${totalTickets}`}
+            </span>
+            <Button className="h-6 w-6" 
+                size="icon" 
+                variant="outline"
+                onClick={handleNextPage}
+                disabled={currentPage * ticketsPerPage >= totalTickets}>
               <ChevronsRightIcon className="h-4 w-4" />
               <span className="sr-only">Next page</span>
             </Button>
