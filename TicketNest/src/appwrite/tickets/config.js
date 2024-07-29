@@ -15,78 +15,55 @@ export class Services {
         this.storage = new Storage(this.client)
     }
 
-    async createTicket({ticketId, title,description, status,priority,customerName,responsiblePerson,createdAt,updatedAt,workDone,owner,deadline,notes,attachments,tags}){
+    async createTicket(ticketData){
         try {
+
+            const document = {
+                ...ticketData,
+                updatedAt: ticketData.updatedAt ? ticketData.updatedAt : [],
+                workDone: ticketData.workDone ? ticketData.workDone : [],
+                tags: ticketData.tags ? ticketData.tags : ""
+            };
+    
+            console.log("Creating ticket with document:", JSON.stringify(document, null, 2));
+
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteTicketsCollectionId,
-                ticketId,
-                {   
-                    ticketId,                
-                    title,
-                    description, 
-                    status,
-                    priority,
-                    customerName,
-                    responsiblePerson,
-                    createdAt,
-                    updatedAt: [updatedAt],
-                    workDone: [workDone],
-                    owner,
-                    deadline,
-                    notes,
-                    attachments: attachments || "",
-                    tags
-                }
-                            )
+                document.ticketId,
+                document
+                
+            )
             
         } catch (error) {
 
-            console.log("Error creating ticket :: Config File ::", error)
+            console.log("Error creating ticket :: Config File ::", error);
+            console.log("Error details:", error.message, error.code, error.response);
+            throw error;
         }
     }
 
-    async updateTicket(ticketId,{ title,description, status,priority,customerName,responsiblePerson,createdAt,updatedAt,workDone,owner,deadline,notes,attachments,tags}) {
+    async updateTicket(ticketId, data) {
         try {
+            const document = {
+                ...data,
+                updatedAt: data.updatedAt ? data.updatedAt : [],
+                workDone: data.workDone ? data.workDone : [],
+                tags: data.tags ? data.tags : ""
+            };
+    
+            console.log("Updating ticket with document:", JSON.stringify(document, null, 2));
+    
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteTicketsCollectionId,
                 ticketId,
-                {   
-                    ticketId,                
-                    title,
-                    description, 
-                    status,
-                    priority,
-                    customerName,
-                    responsiblePerson,
-                    createdAt,
-                    updatedAt: [updatedAt],
-                    workDone: [workDone],
-                    owner,
-                    deadline,
-                    notes,
-                    attachments: attachments || "",
-                    tags
-                }
-
-            )
+                document
+            );
         } catch (error) {
-            console.log("Error in UpdateTicket :: Config.js :: ERROR",error)
-        }
-    }
-
-    async deleteTicket(ticketId){
-        try {
-            await this.databases.deleteDocument(
-                conf.appwriteDatabaseId,
-                conf.appwriteTicketsCollectionId,
-                ticketId
-            )
-            return true
-        } catch (error) {
-            console.log("Error in deleting ticket :: deleteTicket() :: config.js",error)
-            return false
+            console.log("Error in UpdateTicket :: Config.js :: ERROR", error);
+            console.log("Error details:", error.message, error.code, error.response);
+            throw error;
         }
     }
 
@@ -173,10 +150,8 @@ export class Services {
 
     async getPreviewFile(fileID) {
         try {
-            return await this.storage.getFilePreview(
-                conf.appwriteBucketId, 
-                fileID
-            )
+            const response = await this.storage.getFilePreview(conf.appwriteBucketId, fileID);
+            return response.href;
         } catch (error) {
             console.log("Error getting the preview :: getPreviewFile() :: config.js", error)
         }

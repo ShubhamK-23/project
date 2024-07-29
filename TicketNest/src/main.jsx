@@ -13,6 +13,7 @@ import Dashboard from './Pages/Dashboard.jsx'
 import TicketsPage from './Pages/TicketsPage.jsx'
 import  AddTicketPage  from './Pages/AddTicketPage.jsx'
 import  Ticket  from './Pages/Ticket.jsx'
+import EditTicket from './Pages/EditTicket.jsx'
 
 
 const router = createBrowserRouter([
@@ -70,6 +71,16 @@ const router = createBrowserRouter([
             <AuthLayout authentication>
               {" "}
               <AddTicketPage/>
+            </AuthLayout>
+          )
+      },
+      {
+        path:"/ticket/:ticketId/edit",
+        element:
+          (
+            <AuthLayout authentication>
+              {" "}
+              <EditTicket/>
             </AuthLayout>
           )
       },

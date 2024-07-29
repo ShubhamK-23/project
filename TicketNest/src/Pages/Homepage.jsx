@@ -1,53 +1,62 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React from "react";
 import { Button } from "../components/ui/Button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../components/ui/Card";
-import { TicketIcon, TagIcon, ClockIcon, UsersIcon, WebcamIcon, CheckIcon, BarChartIcon, PieChartIcon, DownloadIcon } from "../components/ui/Icons.jsx";
-import './Homepage.css';
-import {Link} from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import {Card,CardHeader,CardTitle,CardDescription,CardContent,} from "../components/ui/Card";
+import { TicketIcon,TagIcon,ClockIcon,UsersIcon,WebcamIcon,CheckIcon,BarChartIcon,PieChartIcon,DownloadIcon,} from "../components/ui/Icons.jsx";
+import "./Homepage.css";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Homepage() {
   const authStatus = useSelector((state) => state.auth.status);
   return authStatus ? (
     <div className="flex-1 space-y-2 pt-8 pl-64">
-    <div className="flex-1 p-4 md:p-6 lg:p-8 overflow-hidden">
-    <div className="flex min-h-[calc(100vh-4rem-2rem)]">
-      <main className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-4 lg:gap-8">
-        <Card className="homepage-section flex flex-col justify-start items-center p-4 md:p-6 lg:p-8">
-          <div className="homepage-content max-w-3xl w-full text-center">
-            <h1 className="homepage-title text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Welcome to TicketNest</h1>
-            <img src="/Images/Ticket1.svg" alt="Ticket Background" className="homepage-image w-1/4 md:w-2/3 lg:w-1/2 mx-auto mb-6 object-cover" />
-            <p className="text-base md:text-lg lg:text-xl mb-8">
-              Streamline your customer service with our powerful ticket management and collaboration tools.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-4">
-            <Link to= "/tickets">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="text-primary-foreground hover:bg-primary-foreground/20 w-full sm:w-auto">
-                  Tickets
-                </Button>
-              </Link>
-              <Link to= "/dashboard">
-              <Button
-                variant="solid"
-                size="lg"
-                className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 w-full sm:w-auto">
-                Dashboard
-              </Button>
-              </Link>
-            </div>
-          </div>
-        </Card>
-        <div className="flex flex-col gap-4 mt-4 lg:mt-0">
-              
+      <div className="flex-1 p-4 md:p-6 lg:p-8 overflow-hidden">
+        <div className="flex min-h-[calc(100vh-4rem-2rem)]">
+          <main className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-4 lg:gap-8">
+            <Card className="homepage-section flex flex-col justify-start items-center p-4 md:p-6 lg:p-8">
+              <div className="homepage-content max-w-3xl w-full text-center">
+                <h1 className="homepage-title text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                  Welcome to TicketNest
+                </h1>
+                <img
+                  src="/Images/Ticket1.svg"
+                  alt="Ticket Background"
+                  className="homepage-image w-1/4 md:w-2/3 lg:w-1/2 mx-auto mb-6 object-cover"
+                />
+                <p className="text-base md:text-lg lg:text-xl mb-8">
+                  Streamline your customer service with our powerful ticket
+                  management and collaboration tools.
+                </p>
+                <div className="flex flex-col sm:flex-row justify-center gap-4 mb-4">
+                  <Link to="/tickets">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="text-primary-foreground hover:bg-primary-foreground/20 w-full sm:w-auto"
+                    >
+                      Tickets
+                    </Button>
+                  </Link>
+                  <Link to="/dashboard">
+                    <Button
+                      variant="solid"
+                      size="lg"
+                      className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 w-full sm:w-auto"
+                    >
+                      Dashboard
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </Card>
+            <div className="flex flex-col gap-4 mt-4 lg:mt-0">
               <Card>
                 <CardHeader>
                   <CardTitle>Ticket Management</CardTitle>
                   <CardDescription>
-                    Organize and prioritize your customer inquiries with our powerful ticket system.
+                    Organize and prioritize your customer inquiries with our
+                    powerful ticket system.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -70,7 +79,10 @@ function Homepage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Team Collaboration</CardTitle>
-                  <CardDescription>Empower your team to work together seamlessly on customer issues.</CardDescription>
+                  <CardDescription>
+                    Empower your team to work together seamlessly on customer
+                    issues.
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="grid gap-2">
@@ -93,7 +105,8 @@ function Homepage() {
                 <CardHeader>
                   <CardTitle>Reporting and Analytics</CardTitle>
                   <CardDescription>
-                    Gain insights into your customer service performance with detailed reports.
+                    Gain insights into your customer service performance with
+                    detailed reports.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -113,47 +126,56 @@ function Homepage() {
                   </div>
                 </CardContent>
               </Card>
-              </div>
+            </div>
           </main>
         </div>
       </div>
-      </div>
-  ):
-  <div className="flex-1 p-4 md:p-16 lg:p-14 overflow-hidden">
-  <div className="flex min-h-[calc(100vh-4rem-2rem)]">
-    <main className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-4 lg:gap-8">
-      <Card className="homepage-section flex flex-col justify-start items-center p-4 md:p-6 lg:p-8">
-        <div className="homepage-content max-w-3xl w-full text-center">
-          <h1 className="homepage-title text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Welcome to TicketNest</h1>
-          <img src="/Images/Ticket1.svg" alt="Ticket Background" className="homepage-image w-3/4 md:w-2/3 lg:w-1/2 mx-auto mb-6 object-cover" />
-          <p className="text-base md:text-lg lg:text-xl mb-8">
-            Streamline your customer service with our powerful ticket management and collaboration tools.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-4">
-          <Link to= "/login">
-              <Button
-                variant="outline"
-                size="lg"
-                className="text-primary-foreground hover:bg-primary-foreground/20 w-full sm:w-auto">
-                Get Started
-              </Button>
-            </Link>
-            <Button
-              variant="solid"
-              size="lg"
-              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 w-full sm:w-auto">
-              Sign Up
-            </Button>
-          </div>
-        </div>
-      </Card>
-      <div className="flex flex-col gap-4 mt-4 lg:mt-0">
-            
+    </div>
+  ) : (
+    <div className="flex-1 p-4 md:p-16 lg:p-14 overflow-hidden">
+      <div className="flex min-h-[calc(100vh-4rem-2rem)]">
+        <main className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-4 lg:gap-8">
+          <Card className="homepage-section flex flex-col justify-start items-center p-4 md:p-6 lg:p-8">
+            <div className="homepage-content max-w-3xl w-full text-center">
+              <h1 className="homepage-title text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                Welcome to TicketNest
+              </h1>
+              <img
+                src="/Images/Ticket1.svg"
+                alt="Ticket Background"
+                className="homepage-image w-3/4 md:w-2/3 lg:w-1/2 mx-auto mb-6 object-cover"
+              />
+              <p className="text-base md:text-lg lg:text-xl mb-8">
+                Streamline your customer service with our powerful ticket
+                management and collaboration tools.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4 mb-4">
+                <Link to="/login">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="text-primary-foreground hover:bg-primary-foreground/20 w-full sm:w-auto"
+                  >
+                    Get Started
+                  </Button>
+                </Link>
+                <Button
+                  variant="solid"
+                  size="lg"
+                  className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 w-full sm:w-auto"
+                >
+                  Sign Up
+                </Button>
+              </div>
+            </div>
+          </Card>
+          <div className="flex flex-col gap-4 mt-4 lg:mt-0">
             <Card>
               <CardHeader>
                 <CardTitle>Ticket Management</CardTitle>
                 <CardDescription>
-                  Organize and prioritize your customer inquiries with our powerful ticket system.
+                  Organize and prioritize your customer inquiries with our
+                  powerful ticket system.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -176,7 +198,10 @@ function Homepage() {
             <Card>
               <CardHeader>
                 <CardTitle>Team Collaboration</CardTitle>
-                <CardDescription>Empower your team to work together seamlessly on customer issues.</CardDescription>
+                <CardDescription>
+                  Empower your team to work together seamlessly on customer
+                  issues.
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid gap-2">
@@ -199,7 +224,8 @@ function Homepage() {
               <CardHeader>
                 <CardTitle>Reporting and Analytics</CardTitle>
                 <CardDescription>
-                  Gain insights into your customer service performance with detailed reports.
+                  Gain insights into your customer service performance with
+                  detailed reports.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -219,11 +245,11 @@ function Homepage() {
                 </div>
               </CardContent>
             </Card>
-            </div>
+          </div>
         </main>
       </div>
     </div>
-    ;
+  );
 }
 
 export default Homepage;

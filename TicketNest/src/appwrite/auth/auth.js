@@ -23,7 +23,7 @@ export class AuthService {
             }
         } catch (error) {
             console.log('Error creating the user:: createAccount ', error)
-                     
+            
         }
     }
 
