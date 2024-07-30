@@ -14,6 +14,7 @@ import TicketsPage from './Pages/TicketsPage.jsx'
 import  AddTicketPage  from './Pages/AddTicketPage.jsx'
 import  Ticket  from './Pages/Ticket.jsx'
 import EditTicket from './Pages/EditTicket.jsx'
+import { Analytics } from './Pages/Analytics.jsx'
 
 
 const router = createBrowserRouter([
@@ -61,6 +62,16 @@ const router = createBrowserRouter([
             <AuthLayout authentication>
               {" "}
               <TicketsPage/>
+            </AuthLayout>
+          )
+      },
+      {
+        path:"/analytics",
+        element:
+          (
+            <AuthLayout authentication>
+              {" "}
+              <Analytics/>
             </AuthLayout>
           )
       },

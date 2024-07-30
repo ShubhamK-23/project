@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "radix-ui": "^1.0.1",
+    "recharts": "^2.12.7"
+  }
+}

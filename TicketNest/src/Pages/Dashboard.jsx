@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { Button } from "../components/ui/Button";
@@ -44,7 +45,7 @@ function Dashboard() {
   const ticketsPerPage = 7;
 
   useFetchInterceptor()
-  
+
   const fetchTickets = (page,  cursor) => {
     setIsLoading(true);
     let query = [Query.limit(ticketsPerPage)];

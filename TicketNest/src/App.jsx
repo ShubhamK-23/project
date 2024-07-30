@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import authService from './appwrite/auth/auth'
@@ -5,7 +6,7 @@ import { login, logout } from './features/auth/authSlice'
 import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import { Outlet } from 'react-router-dom'
-import  {LoadingProvider}  from "./Context/LoadingContext"
+import { LoadingProvider } from "./Context/LoadingContext"
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -26,14 +27,15 @@ function App() {
   if (loading) return "loading...";
 
   return (
-    <div className="min-h-screen bg-gray-400">
-      <Header className="bg-gray-900 text-white py-4" />
+    <div className="min-h-screen bg-gray-50">
+      <Header />
       <div className="flex">
         <Sidebar />
-        <main className="flex-1 p-6">
-        <LoadingProvider>
-          <Outlet />
-        </LoadingProvider>
+        <main className="flex-1 p-6 ml-08">
+
+          <LoadingProvider>
+            <Outlet />
+          </LoadingProvider>
         </main>       
       </div>
     </div>

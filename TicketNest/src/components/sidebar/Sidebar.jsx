@@ -1,58 +1,43 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import {Link} from "react-router-dom";
-import { Button } from "../ui/Button";
-import { Package2Icon,BellIcon, HomeIcon, PackageIcon, UsersIcon, LineChartIcon } from '../ui/Icons'
+import { Link, useLocation } from "react-router-dom";
+import { HomeIcon, BarChartIcon, TicketIcon, UsersIcon, SettingsIcon } from '../ui/Icons'
 import { useSelector } from 'react-redux';
 
 function Sidebar() {
-
   const authStatus = useSelector((state) => state.auth.status);
+  const location = useLocation();
+
+  const navItems = [
+    { name: 'Home', icon: HomeIcon, path: '/' },
+    { name: 'Dashboard', icon: UsersIcon, path: '/dashboard' },
+    { name: 'Tickets', icon: TicketIcon, path: '/tickets' },
+    { name: 'Analytics', icon: BarChartIcon, path: '/analytics' },
+    { name: 'Team', icon: UsersIcon, path: '/team' },
+    { name: 'Settings', icon: SettingsIcon, path: '/settings' },
+  ];
+
   return authStatus ? (
-    <>
-        <aside className="fixed top-14 left-0 w-64 h-full border-r bg-gray-100/40 z-40">
-        <div className="flex  h-auto flex-col gap-2">
-          <div className="flex h-[60px] items-center border-b px-6">
-            <Link className="flex items-center gap-2 font-semibold" href="#">
-              <Package2Icon className="h-6 w-6" />
-              <span className="">TicketNest</span>
+    <aside className="fixed top-14 left-0 w-64 h-full bg-white border-r border-gray-200 z-40">
+      <nav className="flex flex-col p-4 gap-2">
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          return (
+            <Link
+              key={item.name}
+              to={item.path}
+              className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:bg-gray-100 ${
+                location.pathname === item.path ? 'bg-gray-100' : ''
+              }`}
+            >
+              <Icon className="h-5 w-5" />
+              <span>{item.name}</span>
             </Link>
-            <Button className="ml-auto h-8 w-8" size="icon" variant="outline">
-              <BellIcon className="h-4 w-4" />
-              <span className="sr-only">Toggle notifications</span>
-            </Button>
-          </div>
-          <div className="flex-1 overflow-auto py-2">
-            <nav className="grid items-start px-4 text-sm font-medium">
-              <Link
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900"
-                to="/tickets"
-              >
-                <PackageIcon className="h-4 w-4" />
-                Tickets
-              </Link>
-              <Link 
-                to="/dashboard"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900"
-                href="#"
-              >
-                <UsersIcon className="h-4 w-4" />
-                Dashboard
-              </Link>
-              <Link 
-                to = "/#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900"
-                href="#"
-              >
-                <LineChartIcon className="h-4 w-4" />
-                Analytics
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </aside> 
-    </>
-  ) : null
+          );
+        })}
+      </nav>
+    </aside>
+  ) : null;
 }
 
-export default Sidebar
+export default Sidebar;

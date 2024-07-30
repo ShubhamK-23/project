@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link } from "react-router-dom";
-import { Package2Icon, SearchIcon } from "../ui/Icons";
-import { Input } from "../ui/Input";
+import { Package2Icon, } from "../ui/Icons";
+
 import { useDispatch } from 'react-redux'
 import authService from '../../appwrite/auth/auth'
 import { useSelector } from 'react-redux';
@@ -57,72 +57,18 @@ function Header() {
     },
   ];
 
-  return !authStatus ? (
-    <>
-    <header className="fixed top-0 left-0 w-full flex h-14 items-center gap-4 border-b border-gray-200 bg-gray-50/90 px-6 z-50">
-        <div className="container px-4 md:px-6">
-          <nav className="flex items-center justify-between h-[60px]">
-            <div className="flex items-center space-x-4"> 
-              {authStatus && (
-                <div className="hidden md:flex items-center space-x-4">
-                  {navItems.map((item) => 
-                    item.active ? (
-                      <Link key={item.name} to={item.slug}>
-                        {item.name}
-                      </Link>
-                    ) : null
-                  )}
-                </div>
-              )}
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-4">
-                {!authStatus && (
-                  <ul className='flex items-center space-x-2'>
-                    {navItems.map((item) => 
-                      item.active ? (
-                        <li key={item.name}>
-                          <button onClick={() => navigate(item.slug)}>
-                            {item.name} 
-                          </button>
-                        </li>
-                      ) : null
-                    )}
-                  </ul>
-                )}
-              </div>
-            </div>
-          </nav>
-        </div>
-      </header>
-    </>
-  ) : (
-    <>
-      <header className="fixed top-0 left-0 w-full flex h-14 items-center gap-4 border-b border-gray-200 bg-gray-50/90 px-6 z-50">
-        
-          <Link className="lg:hidden" to="/">
-            <Package2Icon className="h-6 w-6" />
-            <span className="sr-only text-gray-500">Home</span>
-          </Link>
-          <div className="w-full flex-1">
-            <form>
-              <div className="relative">
-                <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 " />
-                <Input
-                  id="search"
-                  className="w-full bg-white shadow-none appearance-none pl-8 md:w-2/3 lg:w-1/3"
-                  placeholder="Search"
-                  type="search"
-                />
-                
-              </div>
-              
-            </form>
-          </div>
+  return (
+    <header className="fixed top-0 left-0 w-full flex h-14 items-center border-b border-gray-200 bg-white px-4 z-50">
+      <Link to="/" className="flex items-center gap-2">
+        <Package2Icon className="h-6 w-6" />
+        <span className="font-semibold text-lg">TicketNest</span>
+      </Link>
+      {authStatus && (
+        <div className="ml-auto">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                className="rounded-full border border-gray-200 w-8 h-8 "
+                className="rounded-full border border-gray-200 w-8 h-8"
                 size="icon"
                 variant="ghost"
               >
@@ -137,7 +83,6 @@ function Header() {
                   }}
                   width="32"
                 />
-                <span className="sr-only">Toggle user menu</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -147,11 +92,11 @@ function Header() {
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={logoutHandler}>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
+              </DropdownMenuContent>
           </DropdownMenu>
-        </header>
-      
-  </>
+        </div>
+      )}
+    </header>
   );
 }
 
