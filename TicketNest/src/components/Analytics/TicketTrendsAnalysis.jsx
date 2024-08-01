@@ -13,11 +13,14 @@ import {
 } from "recharts";
 import { ChartContainer, ChartTooltipContent } from "../ui/Chart";
 
+
 function TicketTrendsAnalysis() {
+  const [isLoading, setIsLoading] = useState(false)
   const [ticketTrends, setTicketTrends] = useState([]);
 
   useEffect(() => {
     const fetchTickets = async () => {
+      setIsLoading(true);
       try {
         const response = await service.getAllTickets();
 
@@ -66,6 +69,8 @@ function TicketTrendsAnalysis() {
         }
       } catch (error) {
         console.error("Error fetching tickets:", error);
+      } finally{
+        setIsLoading(false);
       }
     };
 
@@ -74,7 +79,7 @@ function TicketTrendsAnalysis() {
 
   return (
     <div className="w-full h-full">
-      <ChartContainer
+      <ChartContainer isLoading={isLoading}
         config={{
           desktop: {
             label: "Tickets",

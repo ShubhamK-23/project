@@ -5,6 +5,7 @@ import * as React from "react";
 import * as RechartsPrimitive from "recharts";
 
 import { cn } from "../../lib/utils";
+import Skeleton from "../SkeletonShimmer/Skeleton";
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = {
@@ -25,9 +26,19 @@ function useChart() {
 }
 
 const ChartContainer = React.forwardRef(
-  ({ id, className, children, config, ...props }, ref) => {
+  ({ id, className, isLoading, children, config, ...props }, ref) => {
     const uniqueId = React.useId();
     const chartId = `chart-${id || uniqueId.replace(/:/g, "")}`;
+
+    if(isLoading){
+      return (
+        <div className="p-6 space-y-2">
+          
+          <Skeleton width="100%" height="20px" />
+          <Skeleton width="80%" height="20px" />
+        </div>
+      )
+    }
 
     return (
       <ChartContext.Provider value={{ config }}>

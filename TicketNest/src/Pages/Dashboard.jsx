@@ -30,6 +30,7 @@ import Tickets from "../components/tickets/Tickets";
 import { useLoading } from "../Context/LoadingContext";
 import { Query } from "appwrite";
 import { Link } from "react-router-dom";
+import Skeleton from "../components/SkeletonShimmer/Skeleton";
 
 
 function Dashboard() {
@@ -149,12 +150,8 @@ function Dashboard() {
 
   return (
     <>
-    {isLoading ? (
-        <div className="flex-1 space-y-4 pt-14 pl-64">
-          <header>Loading...</header>
-        </div>
-      ) :
-    (<div className="flex-1 space-y-1 pt-6 pl-64">
+    
+    <div className="flex-1 space-y-1 pt-6 pl-64">
       <main className="flex flex-1 flex-col gap-4 p-2 md:gap-6 md:p-6 ">
         <div className="flex items-center gap-4">
           <h1 className="font-bold text-lg md:text-2xl">Tickets</h1>
@@ -168,36 +165,36 @@ function Dashboard() {
         </div>
         <div className="flex flex-col gap-2">
           <div className="grid gap-2 md:grid-cols-3">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
+            <Card isLoading={isLoading}>
+              <CardHeader isLoading= {isLoading} className="flex flex-row items-center justify-between pb-2 space-y-0">
+                <CardTitle isLoading= {isLoading} className="text-sm font-medium">
                   Open Tickets
                 </CardTitle>
                 <ActivityIcon className="w-4 h-4" />
               </CardHeader>
-              <CardContent>
+              <CardContent isLoading= {isLoading}>
                 <div className="text-2xl font-bold">{totalOpenTickets}</div>
               </CardContent>
             </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
+            <Card isLoading={isLoading}>
+              <CardHeader isLoading= {isLoading} className="flex flex-row items-center justify-between pb-2 space-y-0">
+                <CardTitle isLoading= {isLoading} className="text-sm font-medium">
                 Wait For Customer Response
                 </CardTitle>
                 <ClockIcon className="w-4 h-4" />
               </CardHeader>
-              <CardContent>
+              <CardContent isLoading= {isLoading}>
                 <div className="text-2xl font-bold">{totalW4CRTickets}</div>
               </CardContent>
             </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                <CardTitle className="text-sm font-medium">
+            <Card isLoading={isLoading}>
+              <CardHeader isLoading= {isLoading} className="flex flex-row items-center justify-between pb-2 space-y-0">
+                <CardTitle isLoading= {isLoading} className="text-sm font-medium">
                   Resolved Tickets
                 </CardTitle>
                 <CheckCircleIcon className="w-4 h-4" />
               </CardHeader>
-              <CardContent>
+              <CardContent isLoading= {isLoading}>
                 <div className="text-2xl font-bold">{totalClosedTickets}</div>
               </CardContent>
             </Card>
@@ -236,31 +233,31 @@ function Dashboard() {
           </div>
         </div>
 
-          <Card>
+          <Card isLoading={isLoading}>
             <div className="border-t border-gray-200 ">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-10 shrink-0"></TableHead>
-                    <TableHead className="w-[100px] font-bold">Ticket</TableHead>
-                    <TableHead className="min-w-[150px] font-bold">Customer</TableHead>
-                    <TableHead className="hidden md:table-cell font-bold">
+              <Table isLoading= {isLoading}>
+                <TableHeader isLoading={isLoading}>
+                  <TableRow isLoading={isLoading}>
+                    <TableHead isLoading={isLoading} className="w-10 shrink-0"></TableHead>
+                    <TableHead isLoading={isLoading} className="w-[100px] font-bold">Ticket</TableHead>
+                    <TableHead isLoading={isLoading} className="min-w-[150px] font-bold">Customer</TableHead>
+                    <TableHead isLoading={isLoading} className="hidden md:table-cell font-bold">
                       Title
                     </TableHead>
-                    <TableHead className="hidden md:table-cell font-bold">
+                    <TableHead isLoading={isLoading} className="hidden md:table-cell font-bold">
                       Status
                     </TableHead>
-                    <TableHead className="hidden sm:table-cell font-bold">
+                    <TableHead isLoading={isLoading} className="hidden sm:table-cell font-bold">
                       Priority
                     </TableHead>
                     
-                    <TableHead className="hidden sm:table-cell font-bold">
+                    <TableHead isLoading={isLoading} className="hidden sm:table-cell font-bold">
                       Responsible
                     </TableHead>
-                    <TableHead className="hidden sm:table-cell font-bold">Updated At</TableHead>
+                    <TableHead isLoading={isLoading} className="hidden sm:table-cell font-bold">Updated At</TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody> 
+                <TableBody isLoading={isLoading}> 
                 {tickets.map((ticket) => (
                   <Tickets key={ticket.ticketId} {...ticket} />
                 ))}
@@ -272,7 +269,7 @@ function Dashboard() {
         </div>
       </main>
     </div>
-  )}
+
     </>
   );
 }

@@ -1,17 +1,22 @@
+/* eslint-disable no-unused-vars */
 import  { useEffect, useState } from "react";
 import service from "../../appwrite/tickets/config";
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, } from 'recharts';
 import { ChartContainer, ChartTooltipContent } from "../ui/Chart";
+import Skeleton from "../SkeletonShimmer/Skeleton";
 
 function PriorityAnalysis() {
   const [priorityData, setPriorityData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const fetchTickets = async () => {
+      setIsLoading(true);
       try {
         const response = await service.getAllTickets();
 
         if (response && response.documents) {
+          setIsLoading(false);
           const tickets = response.documents;
           const priorities = {};
 
@@ -32,6 +37,8 @@ function PriorityAnalysis() {
         }
       } catch (error) {
         console.error("Error fetching tickets:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -62,8 +69,8 @@ function PriorityAnalysis() {
   };
 
   return (
-    <ResponsiveContainer width="100%" height={400}>
-      <ChartContainer
+  
+      <ChartContainer isLoading={isLoading}
         config={config}
         className="mx-auto aspect-square max-h-[350px] pb-0"
       >
@@ -84,7 +91,7 @@ function PriorityAnalysis() {
           </Pie>
         </PieChart>
       </ChartContainer>
-    </ResponsiveContainer>
+    
   );
 }
 

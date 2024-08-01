@@ -76,11 +76,7 @@ export default function TicketsPage() {
 
   return (
     <>
-    {isLoading ? (
-        <div className="flex-1 space-y-4 pt-14 pl-64">
-          <header>Loading...</header>
-        </div>
-      ) : (
+
       <div className="flex-1 space-y-4 pt-11 pl-64">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold">Tickets</h1>
@@ -94,22 +90,22 @@ export default function TicketsPage() {
             </Button>
           </div>
         </div>
-        <Card>
-          <CardContent className="p-0">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-10 shrink-0"></TableHead>
-                  <TableHead className="font-bold">Ticket</TableHead>
-                  <TableHead className="font-bold">Customer</TableHead>
-                  <TableHead className="font-bold">Title</TableHead>
-                  <TableHead className="font-bold">Status</TableHead>
-                  <TableHead className="font-bold">Priority</TableHead>
-                  <TableHead className="font-bold">Responsible</TableHead>
-                  <TableHead className="justify-end font-bold">Last update</TableHead>
+        <Card isLoading= {isLoading}>
+          <CardContent isLoading= {isLoading} className="p-0">
+            <Table isLoading= {isLoading}>
+              <TableHeader isLoading= {isLoading}>
+                <TableRow isLoading= {isLoading}>
+                  <TableHead isLoading= {isLoading} className="w-10 shrink-0"></TableHead>
+                  <TableHead isLoading= {isLoading} className="font-bold">Ticket</TableHead>
+                  <TableHead isLoading= {isLoading} className="font-bold">Customer</TableHead>
+                  <TableHead isLoading= {isLoading} className="font-bold">Title</TableHead>
+                  <TableHead isLoading= {isLoading} className="font-bold">Status</TableHead>
+                  <TableHead isLoading= {isLoading} className="font-bold">Priority</TableHead>
+                  <TableHead isLoading= {isLoading} className="font-bold">Responsible</TableHead>
+                  <TableHead isLoading= {isLoading} className="justify-end font-bold">Last update</TableHead>
                 </TableRow>
               </TableHeader>
-              <TableBody>
+              <TableBody isLoading= {isLoading}>
                 {tickets.map((ticket) => (
                   <Tickets key={ticket.ticketId} {...ticket} />
                 ))}
@@ -151,7 +147,6 @@ export default function TicketsPage() {
           </div>
         </div>
       </div>
-      )}
     </>
   );
 }

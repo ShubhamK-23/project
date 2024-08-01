@@ -98,9 +98,7 @@ export function Analytics() {
 
     return (
     <>
-      {isLoading ? (<div className="flex-1 space-y-1 pt-12 pl-64">
-        <header>Loading...</header>
-      </div>):(
+    (
     <div className="flex-1 space-y-1 pt-12 pl-64">
       <div className="flex flex-col min-h-screen bg-muted/40">
         <header
@@ -177,12 +175,12 @@ export function Analytics() {
         </header>
         <main className="flex-1 p-4 sm:p-6 md:p-8 overflow-auto">
           <div className="grid gap-4 sm:gap-6 md:gap-8">
-            <Card>
-              <CardHeader>
-                <CardTitle>Ticket Overview</CardTitle>
-                <CardDescription>A high-level overview of your ticket metrics.</CardDescription>
+            <Card isLoading= {isLoading}>
+              <CardHeader isLoading={isLoading} >
+                <CardTitle isLoading={isLoading}>Ticket Overview</CardTitle>
+                <CardDescription isLoading={isLoading}>A high-level overview of your ticket metrics.</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent isLoading={isLoading}>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
                   <div
                     className="flex flex-col items-start gap-2 rounded-lg bg-background p-4 shadow-sm">
@@ -208,32 +206,32 @@ export function Analytics() {
               </CardContent>
             </Card>
             <div className="grid gap-4 sm:gap-6 md:gap-8 lg:grid-cols-2">
-              <Card className="h-[500px]">
-                <CardHeader>
-                  <CardTitle>Ticket Trends</CardTitle>
-                  <CardDescription>Visualize ticket trends over time.</CardDescription>
+              <Card className="h-[500px]" isLoading={isLoading}>
+                <CardHeader isLoading={isLoading}>
+                  <CardTitle isLoading={isLoading}>Ticket Trends</CardTitle>
+                  <CardDescription isLoading={isLoading}>Visualize ticket trends over time.</CardDescription>
                 </CardHeader>
-                <CardContent className="h-[450px] pt-10 pr-16">
+                <CardContent isLoading={isLoading} className="h-[450px] pt-10 pr-16">
                   <TicketTrendsAnalysis />
                 </CardContent>
               </Card>
-              <Card className="h-[500px]">
-                <CardHeader>
-                  <CardTitle>Priority Analysis</CardTitle>
-                  <CardDescription>Understand the distribution of ticket priorities.</CardDescription>
+              <Card isLoading= {isLoading}className="h-[500px]">
+                <CardHeader isLoading={isLoading}>
+                  <CardTitle isLoading={isLoading}>Priority Analysis</CardTitle>
+                  <CardDescription isLoading={isLoading}>Understand the distribution of ticket priorities.</CardDescription>
                 </CardHeader>
-                <CardContent className="h-[500px] pr-08">
+                <CardContent isLoading={isLoading}className="h-[500px] pr-08">
                   <PriorityAnalysis />
                 </CardContent>
               </Card>
             </div>
             <div className="grid gap-4 sm:gap-6 md:gap-8 lg:grid-cols-2">
-              <Card className="h-full">
-                <CardHeader>
-                  <CardTitle>Team Performance</CardTitle>
-                  <CardDescription>Evaluate the performance of your support team.</CardDescription>
+              <Card isLoading= {isLoading}className="h-full">
+                <CardHeader isLoading={isLoading}>
+                  <CardTitle isLoading={isLoading}>Team Performance</CardTitle>
+                  <CardDescription isLoading={isLoading}>Evaluate the performance of your support team.</CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent isLoading={isLoading}>
                   <Table>
                     <TableHeader>
                       <TableRow>
@@ -272,12 +270,12 @@ export function Analytics() {
                   </Table>
                 </CardContent>
               </Card>
-              <Card className="h-full">
-                <CardHeader>
-                  <CardTitle>Customer Insights</CardTitle>
-                  <CardDescription>Analyze customer feedback and satisfaction.</CardDescription>
+              <Card isLoading= {isLoading}className="h-full">
+                <CardHeader isLoading={isLoading}>
+                  <CardTitle isLoading={isLoading}>Customer Insights</CardTitle>
+                  <CardDescription isLoading={isLoading}>Analyze customer feedback and satisfaction.</CardDescription>
                 </CardHeader>
-                <CardContent>
+                <CardContent isLoading={isLoading}>
                   <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div
                       className="flex flex-col items-start gap-2 rounded-lg bg-background p-4 shadow-sm">
@@ -293,12 +291,12 @@ export function Analytics() {
                 </CardContent>
               </Card>
             </div>
-            <Card>
-              <CardHeader>
-                <CardTitle>Top Issues</CardTitle>
-                <CardDescription>Identify the most common ticket issues.</CardDescription>
+            <Card isLoading= {isLoading}>
+              <CardHeader isLoading={isLoading}>
+                <CardTitle isLoading={isLoading}>Top Issues</CardTitle>
+                <CardDescription isLoading={isLoading}>Identify the most common ticket issues.</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent isLoading={isLoading}>
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -348,7 +346,7 @@ export function Analytics() {
         </main>
       </div>
       </div>
-    )}
+    )
     </>
     );
   }
