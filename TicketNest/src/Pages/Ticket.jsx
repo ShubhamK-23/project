@@ -96,7 +96,7 @@ export default function Ticket() {
             <div className="flex flex-col w-full min-h-screen p-4 md:flex-row md:gap-8 md:p-10">
               <main className="flex-1 space-y-4">
                 <div className="flex items-center justify-between">
-                  <h1 className="text-xl font-bold">{ticket.title}</h1>
+                  <h1 className="text-xl font-bold">Ticket#{ticket.ticketId} — {ticket.title}</h1>
                   <Badge className="ml-5" variant="secondary">
                     {ticket.status}
                   </Badge>

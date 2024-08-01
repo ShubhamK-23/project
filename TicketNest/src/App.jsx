@@ -8,6 +8,7 @@ import Sidebar from './components/sidebar/Sidebar'
 import { Outlet } from 'react-router-dom'
 import { LoadingProvider } from "./Context/LoadingContext"
 
+
 function App() {
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()

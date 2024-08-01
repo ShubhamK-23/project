@@ -106,9 +106,7 @@ export default function TicketsPage() {
                   <TableHead className="font-bold">Status</TableHead>
                   <TableHead className="font-bold">Priority</TableHead>
                   <TableHead className="font-bold">Responsible</TableHead>
-                  <TableHead className="justify-end font-normal">
-                    Last update
-                  </TableHead>
+                  <TableHead className="justify-end font-bold">Last update</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

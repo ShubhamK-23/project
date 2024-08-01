@@ -15,6 +15,7 @@ import  AddTicketPage  from './Pages/AddTicketPage.jsx'
 import  Ticket  from './Pages/Ticket.jsx'
 import EditTicket from './Pages/EditTicket.jsx'
 import { Analytics } from './Pages/Analytics.jsx'
+import ErrorPage from './Pages/ErrorPage.jsx'
 
 
 const router = createBrowserRouter([
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
       {
         path:"/ticket/:ticketId",
         element: <Ticket/>,
+      },
+      {
+        path:"*",
+        element: <ErrorPage/>,
       },
 
 

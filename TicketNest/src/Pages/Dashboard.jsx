@@ -28,8 +28,8 @@ import service from "../appwrite/tickets/config";
 import { useFetchInterceptor } from "../Interceptor/Interceptor";
 import Tickets from "../components/tickets/Tickets";
 import { useLoading } from "../Context/LoadingContext";
-import { Link } from "react-router-dom";
 import { Query } from "appwrite";
+import { Link } from "react-router-dom";
 
 
 function Dashboard() {
@@ -158,9 +158,13 @@ function Dashboard() {
       <main className="flex flex-1 flex-col gap-4 p-2 md:gap-6 md:p-6 ">
         <div className="flex items-center gap-4">
           <h1 className="font-bold text-lg md:text-2xl">Tickets</h1>
+          
           <Button className="ml-auto" size="sm">
+          <Link to={'/addticket'}>
             New Ticket
+            </Link>
           </Button>
+          
         </div>
         <div className="flex flex-col gap-2">
           <div className="grid gap-2 md:grid-cols-3">

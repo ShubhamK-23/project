@@ -1,69 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from "../components/ui/BreadCrumbs";
-import { Link } from "react-router-dom";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem, DropdownMenuCheckboxItem } from "../components/ui/Dropdown-menu";
 import { Button } from "../components/ui/Button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../components/ui/Card";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "../components/ui/Table";
-import { Pie, PieChart } from "recharts";
-import { ChartTooltipContent, ChartTooltip, ChartContainer } from "../components/ui/Chart";
 import { CalendarClockIcon, FlagIcon, TicketIcon, UserIcon } from '../components/ui/Icons';
 import service from '../appwrite/tickets/config';
-import Data from '../components/Analytics/Data';
-
-
-
-function PiechartlabelChart(props) {
-  return (
-    <div {...props}>
-      <ChartContainer
-        config={{
-          visitors: {
-            label: "Visitors",
-          },
-          chrome: {
-            label: "Chrome",
-            color: "hsl(var(--chart-1))",
-          },
-          safari: {
-            label: "Safari",
-            color: "hsl(var(--chart-2))",
-          },
-          firefox: {
-            label: "Firefox",
-            color: "hsl(var(--chart-3))",
-          },
-          edge: {
-            label: "Edge",
-            color: "hsl(var(--chart-4))",
-          },
-          other: {
-            label: "Other",
-            color: "hsl(var(--chart-5))",
-          },
-        }}
-        className="mx-auto aspect-square max-h-[250px] pb-0"
-      >
-        <PieChart>
-          <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-          <Pie
-            data={[
-              { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-              { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-              { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-              { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-              { browser: "other", visitors: 90, fill: "var(--color-other)" },
-            ]}
-            dataKey="visitors"
-            label
-            nameKey="browser"
-          />
-        </PieChart>
-      </ChartContainer>
-    </div>
-  );
-}
+import PriorityAnalysis from '../components/Analytics/PriorityAnalysis';
+import TicketTrendsAnalysis from '../components/Analytics/TicketTrendsAnalysis';
 
 
 
@@ -231,8 +175,8 @@ export function Analytics() {
             </DropdownMenu>
           </div>
         </header>
-        <main className="flex-1 p-4 sm:p-6 md:p-8">
-          <div className="grid gap-8">
+        <main className="flex-1 p-4 sm:p-6 md:p-8 overflow-auto">
+          <div className="grid gap-4 sm:gap-6 md:gap-8">
             <Card>
               <CardHeader>
                 <CardTitle>Ticket Overview</CardTitle>
@@ -263,32 +207,28 @@ export function Analytics() {
                 </div>
               </CardContent>
             </Card>
-            <div className="grid gap-8 md:grid-cols-2 auto-rows-fr">
-              <Card>
+            <div className="grid gap-4 sm:gap-6 md:gap-8 lg:grid-cols-2">
+              <Card className="h-[500px]">
                 <CardHeader>
                   <CardTitle>Ticket Trends</CardTitle>
                   <CardDescription>Visualize ticket trends over time.</CardDescription>
                 </CardHeader>
-                <CardContent className="h-[300px] sm:h-[400px] md:h-[500px]">
-                <div className="w-full pt-12 h-full">
-                  <Data/>
-                  </div>
+                <CardContent className="h-[450px] pt-10 pr-16">
+                  <TicketTrendsAnalysis />
                 </CardContent>
               </Card>
-              <Card>
+              <Card className="h-[500px]">
                 <CardHeader>
                   <CardTitle>Priority Analysis</CardTitle>
                   <CardDescription>Understand the distribution of ticket priorities.</CardDescription>
                 </CardHeader>
-                <CardContent className="h-[300px] sm:h-[400px] md:h-[500px]">
-                <div className="w-full pt-12 h-full">
-                  <PiechartlabelChart className="aspect-square" />
-                </div>
+                <CardContent className="h-[500px] pr-08">
+                  <PriorityAnalysis />
                 </CardContent>
               </Card>
             </div>
-            <div className="grid gap-8 md:grid-cols-2">
-              <Card>
+            <div className="grid gap-4 sm:gap-6 md:gap-8 lg:grid-cols-2">
+              <Card className="h-full">
                 <CardHeader>
                   <CardTitle>Team Performance</CardTitle>
                   <CardDescription>Evaluate the performance of your support team.</CardDescription>
@@ -332,7 +272,7 @@ export function Analytics() {
                   </Table>
                 </CardContent>
               </Card>
-              <Card>
+              <Card className="h-full">
                 <CardHeader>
                   <CardTitle>Customer Insights</CardTitle>
                   <CardDescription>Analyze customer feedback and satisfaction.</CardDescription>
