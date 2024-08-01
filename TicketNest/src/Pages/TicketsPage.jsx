@@ -134,7 +134,7 @@ export default function TicketsPage() {
               {`${(currentPage - 1) * ticketsPerPage + 1}-${Math.min(
                           currentPage * ticketsPerPage,
                           totalTickets
-                      )} of 
+                      )} of
                     ${totalTickets}`}
             </span>
             <Button className="h-6 w-6" 
